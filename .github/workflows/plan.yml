@@ -14,7 +14,7 @@ jobs:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
 
-      - name: 'Set default terragrunt version'
+      - name: 'Set default terragrunt and terraform versions'
         id: defaults
         run: |
           echo "tg_version=${{ github.event.inputs.tg_version || 'v0.53.2' }}" >> $GITHUB_ENV
@@ -33,6 +33,8 @@ jobs:
           curl -L -o terragrunt https://github.com/gruntwork-io/terragrunt/releases/download/v${{ env.tg_version }}/terragrunt_linux_amd64
           chmod +x terragrunt
           sudo mv terragrunt /usr/local/bin/terragrunt
+          file /usr/local/bin/terragrunt
+          /usr/local/bin/terragrunt --version
 
       - name: 'Run Terragrunt plan'
         env:
@@ -42,3 +44,4 @@ jobs:
 
         run: terragrunt plan
         working-directory: ${{ inputs.working_dir }}
+        terraform_wrapper: false
