@@ -6,8 +6,6 @@ on:
       working_dir:
         type: string
         required: true
-    env:
-      tg_version: ${{ github.event.inputs.tg_version || 'default_version' }}
 
 jobs:
   perform-check:
@@ -15,6 +13,10 @@ jobs:
     steps:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
+
+      - name: 'Set default values'
+        id: defaults
+        run: echo "TG_VERSION=${{ github.event.inputs.tg_version || '0.53.2' }}" >> $GITHUB_ENV
 
       - name: 'Install Terragrunt'
         run: |
