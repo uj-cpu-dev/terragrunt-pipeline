@@ -16,7 +16,7 @@ jobs:
 
       - name: 'Set default values'
         id: defaults
-        run: echo "TG_VERSION=${{ github.event.inputs.tg_version || '0.53.2' }}" >> $GITHUB_ENV
+        run: echo "tg_version=${{ github.event.inputs.tg_version || '0.53.2' }}" >> $GITHUB_ENV
 
       - name: 'Install Terragrunt'
         run: |
