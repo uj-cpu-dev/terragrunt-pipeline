@@ -16,4 +16,3 @@ jobs:
     uses: ./.github/workflows/check.yml
     with:
       working_dir: ${{ inputs.working_dir }}
-      tg_version: ${{ env.tg_version }}
