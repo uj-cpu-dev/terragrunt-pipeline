@@ -18,4 +18,5 @@ jobs:
     uses: ./.github/workflows/plan.yml
     with:
       working_dir: ${{ inputs.working_dir }}
+    secrets: inherit
     needs: [ terragrunt-project-check ]
