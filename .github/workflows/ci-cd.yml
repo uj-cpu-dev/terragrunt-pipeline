@@ -1,12 +1,11 @@
 name: 'Terragrunt CI/CD Pipeline'
 
-inputs:
-  working_dir:
-    description: The working directory for Terragrunt
-    required: true
-
 on:
-  workflow_dispatch
+  workflow_call:
+    inputs:
+      working_dir:
+        type: string
+        required: true
 
 env:
   tf_version: 1.9.5
