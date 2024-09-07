@@ -6,6 +6,12 @@ on:
       working_dir:
         type: string
         required: true
+      tf_version:
+        type: string
+        required: true
+      tg_version:
+        type: string
+        required: true
 
 
 jobs:
