@@ -1,0 +1,23 @@
+name: 'Terragrunt Plan'
+
+on:
+  workflow_call:
+    inputs:
+      working_dir:
+        type: string
+        required: true
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@main
+
+      - name: Plan
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tf_version: '1.5.7'  # Use the passed input
+          tg_version: '0.53.2'  # Use the passed input
+          tg_dir: ${{ inputs.working_dir }}
+          tg_command: 'plan'

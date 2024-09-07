@@ -13,3 +13,9 @@ jobs:
     uses: ./.github/workflows/check.yml
     with:
       working_dir: ${{ inputs.working_dir }}
+
+  terragrunt-project-plan:
+    uses: ./.github/workflows/plan.yml
+    with:
+      working_dir: ${{ inputs.working_dir }}
+    needs: [ terragrunt-project-check ]
