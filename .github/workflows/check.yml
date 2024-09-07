@@ -23,7 +23,7 @@ jobs:
       - name: Check terragrunt HCL
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tf_version: ${{ inputs.tf_version }}  # Use the passed input
+          tf_version: '1.5.7'  # Use the passed input
           tg_version: '0.53.2'  # Use the passed input
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'hclfmt --terragrunt-check --terragrunt-diff'
