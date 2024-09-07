@@ -44,4 +44,3 @@ jobs:
 
         run: terragrunt plan
         working-directory: ${{ inputs.working_dir }}
-        terraform_wrapper: false
