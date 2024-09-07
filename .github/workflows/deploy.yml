@@ -1,0 +1,29 @@
+name: 'Terragrunt Deploy'
+
+on:
+  workflow_call:
+    inputs:
+      working_dir:
+        type: string
+        required: true
+      tf_version:
+        type: string
+        required: true
+      tg_version:
+        type: string
+        required: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@main
+
+      - name: Deploy
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tf_version: ${{ inputs.tf_version }}  # Use the passed input
+          tg_version: ${{ inputs.tg_version }}  # Use the passed input
+          tg_dir: ${{ inputs.working_dir }}
+          tg_command: 'apply'

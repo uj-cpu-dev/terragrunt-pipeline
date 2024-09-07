@@ -6,6 +6,12 @@ on:
       working_dir:
         type: string
         required: true
+      tf_version:
+        type: string
+        required: true
+      tg_version:
+        type: string
+        required: true
 
 
 jobs:
@@ -20,3 +26,12 @@ jobs:
       working_dir: ${{ inputs.working_dir }}
     secrets: inherit
     needs: [ terragrunt-project-check ]
+
+  terragrunt-project-apply:
+    uses: ./.github/workflows/deploy.yml
+    with:
+      working_dir: ${{ inputs.working_dir }}
+      tf_version: ${{ inputs.tf_version }}
+      tg_version: ${{ inputs.tg_version }}
+    secrets: inherit
+    needs: [ terragrunt-project-plan ]
