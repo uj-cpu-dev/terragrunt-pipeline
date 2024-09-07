@@ -6,13 +6,14 @@ on:
       working_dir:
         type: string
         required: true
-      tg_version:
-        type: string
-        required: true
+
+env:
+  tf_version: 1.9.5
+  tg_version: 0.53.2
 
 jobs:
   terragrunt-project-check:
     uses: ./.github/workflows/check.yml
     with:
       working_dir: ${{ inputs.working_dir }}
-      tg_version: ${{ inputs.tg_version }}
+      tg_version: ${{ env.tg_version }}
