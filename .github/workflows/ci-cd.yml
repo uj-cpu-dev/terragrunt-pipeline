@@ -6,12 +6,6 @@ on:
       working_dir:
         type: string
         required: true
-      tf_version:
-        type: string
-        required: true
-      tg_version:
-        type: string
-        required: true
 
 
 jobs:
@@ -19,5 +13,3 @@ jobs:
     uses: ./.github/workflows/check.yml
     with:
       working_dir: ${{ inputs.working_dir }}
-      tf_version: ${{ inputs.tf_version }}  # Pass version from parent
-      tg_version: ${{ inputs.tg_version }}  # Pass version from parent
