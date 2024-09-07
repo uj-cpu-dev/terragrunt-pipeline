@@ -9,10 +9,15 @@ on:
 
 env:
   tf_version: 1.9.5
-  tg_version: 0.53.2
+  tg_version: v0.53.2
 
 jobs:
   terragrunt-project-check:
     uses: ./.github/workflows/check.yml
+    with:
+      working_dir: ${{ inputs.working_dir }}
+
+  terragrunt-project-plan:
+    uses: ./.github/workflows/plan.yml
     with:
       working_dir: ${{ inputs.working_dir }}

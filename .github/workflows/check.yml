@@ -14,7 +14,7 @@ jobs:
       - name: 'Checkout repository'
         uses: actions/checkout@v2
 
-      - name: 'Set default values'
+      - name: 'Set default terragrunt version'
         id: defaults
         run: echo "tg_version=${{ github.event.inputs.tg_version || 'v0.53.2' }}" >> $GITHUB_ENV
 
