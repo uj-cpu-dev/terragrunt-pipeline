@@ -25,7 +25,7 @@ jobs:
         uses: actions/cache@v4.0.1
         with:
           path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl') }}
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/live/dev/s3.terraform.lock.hcl') }}
 
       - name: 'Configure AWS Credentials'
         uses: aws-actions/configure-aws-credentials@v4
