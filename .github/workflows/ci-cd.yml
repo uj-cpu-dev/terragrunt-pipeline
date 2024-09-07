@@ -8,17 +8,14 @@ on:
         required: true
 
 env:
-  tf_version: 1.9.5
-  tg_version: v0.53.2
+  tf_version: '1.5.7'   # Define Terraform version once
+  tg_version: '0.53.2'   # Define Terragrunt version once
+
 
 jobs:
   terragrunt-project-check:
     uses: ./.github/workflows/check.yml
     with:
       working_dir: ${{ inputs.working_dir }}
-
-  terragrunt-plan:
-    uses: ./.github/workflows/plan.yml
-    with:
-      working_dir: ${{ inputs.working_dir }}
-    needs: terragrunt-project-check
+      tf_version: ${{ env.tf_version }}  # Pass version from parent
+      tg_version: ${{ env.tg_version }}  # Pass version from parent
