@@ -11,9 +11,9 @@ jobs:
   plan:
     runs-on: ubuntu-latest
 
-    permissions:
-      id-token: none
-      contents: read
+    permissions: # Place permissions at the job level
+      id-token: write
+      contents: write
 
     steps:
       - name: 'Checkout'
