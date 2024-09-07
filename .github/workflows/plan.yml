@@ -19,13 +19,13 @@ jobs:
         uses: actions/checkout@main
 
       - name: 'Create Terraform Plugin Cache Dir'
-        run: mkdir -p $TF_PLUGIN_CACHE_DIR
+        run: mkdir -p ${{ github.workspace }}/.terraform.d/plugin-cache
 
       - name: 'Terraform Plugin Cache'
         uses: actions/cache@v4.0.1
         with:
-          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
-          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/live/dev/s3/.terraform.lock.hcl') }}
+          path: ${{ github.workspace }}/.terraform.d/plugin-cache
+          key: ${{ runner.os }}-terraform-plugin-cache-${{ hashFiles('**/.terraform.lock.hcl') }}
 
       - name: 'Configure AWS Credentials'
         uses: aws-actions/configure-aws-credentials@v4
