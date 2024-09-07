@@ -10,6 +10,11 @@ on:
 jobs:
   plan:
     runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+      contents: write
+
     steps:
       - name: 'Checkout'
         uses: actions/checkout@main
@@ -20,9 +25,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: 'us-east-1'
-        permissions:
-          id-token: write
-          contents: write
 
       - name: Plan
         uses: gruntwork-io/terragrunt-action@v2
