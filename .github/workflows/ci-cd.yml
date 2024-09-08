@@ -9,21 +9,15 @@ on:
 
 
 jobs:
-  terragrunt-project-check:
-    uses: ./.github/workflows/check.yml
-    with:
-      working_dir: ${{ inputs.working_dir }}
+  terragrunt-pipeline:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - name: 'Checkout'
+        uses: actions/checkout@v2
 
-  terragrunt-project-plan:
-    uses: ./.github/workflows/plan.yml
-    with:
-      working_dir: ${{ inputs.working_dir }}
-    secrets: inherit
-    needs: [ terragrunt-project-check ]
-
-  terragrunt-project-apply:
-    uses: ./.github/workflows/deploy.yml
-    with:
-      working_dir: ${{ inputs.working_dir }}
-    secrets: inherit
-    needs: [ terragrunt-project-plan ]
+      # Run the check workflow
+      - name: 'Run Terragrunt Check'
+        uses: ./.github/workflows/check.yml
+        with:
+          working_dir: ${{ inputs.working_dir }}

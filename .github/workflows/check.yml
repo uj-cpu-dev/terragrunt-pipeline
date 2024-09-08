@@ -11,9 +11,6 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@main
-
       - name: Check terragrunt HCL
         uses: gruntwork-io/terragrunt-action@v2
         with:
