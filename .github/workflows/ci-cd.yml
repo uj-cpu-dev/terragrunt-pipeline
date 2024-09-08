@@ -8,8 +8,8 @@ on:
         required: true
 
 env:
-  tf_version: '1.5.7'  # Use the passed input
-  tg_version: '0.53.2'  # Use the passed input
+  tf_version: '1.5.7'
+  tg_version: '0.53.2'
 
 
 jobs:
@@ -22,8 +22,8 @@ jobs:
       - name: Check terragrunt HCL
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tf_version: ${{ env.tf_version }}  # Use the passed input
-          tg_version: '0.53.2'  # Use the passed input
+          tf_version: ${{ env.tf_version }}
+          tg_version: ${{ env.tg_version }}
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'hclfmt --terragrunt-check --terragrunt-diff'
 
@@ -54,8 +54,8 @@ jobs:
       - name: 'Plan'
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tf_version: '1.5.7'  # Use the passed input
-          tg_version: '0.53.2'  # Use the passed input
+          tf_version: ${{ env.tf_version }}
+          tg_version: ${{ env.tg_version }}
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'plan'
 
@@ -77,7 +77,7 @@ jobs:
       - name: Deploy
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tf_version: '1.5.7'  # Use the passed input
-          tg_version: '0.53.2'  # Use the passed input
+          tf_version: ${{ env.tf_version }}
+          tg_version: ${{ env.tg_version }}
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'apply'
