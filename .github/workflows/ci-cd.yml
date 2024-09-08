@@ -12,10 +12,6 @@ jobs:
   terragrunt-pipeline:
     runs-on: ubuntu-latest
     steps:
-      # Checkout the code
-      - name: 'Checkout'
-        uses: actions/checkout@v2
-
       # Run the check workflow
       - name: 'Run Terragrunt Check'
         uses: ./.github/workflows/check.yml
