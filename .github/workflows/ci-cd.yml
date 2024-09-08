@@ -6,6 +6,9 @@ on:
       working_dir:
         type: string
         required: true
+      tf_version:
+        type: string
+        required: true
 
 
 jobs:
@@ -18,7 +21,7 @@ jobs:
       - name: Check terragrunt HCL
         uses: gruntwork-io/terragrunt-action@v2
         with:
-          tf_version: '1.5.7'  # Use the passed input
+          tf_version: {{ inputs.tf_version }}  # Use the passed input
           tg_version: '0.53.2'  # Use the passed input
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'hclfmt --terragrunt-check --terragrunt-diff'
@@ -54,3 +57,26 @@ jobs:
           tg_version: '0.53.2'  # Use the passed input
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'plan'
+
+  deploy:
+    needs: [ plan ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@main
+
+      - name: 'Configure AWS Credentials'
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'us-east-1'
+
+      - name: Deploy
+        uses: gruntwork-io/terragrunt-action@v2
+        with:
+          tf_version: '1.5.7'  # Use the passed input
+          tg_version: '0.53.2'  # Use the passed input
+          tg_dir: ${{ inputs.working_dir }}
+          tg_command: 'apply'
