@@ -7,9 +7,10 @@ on:
         type: string
         required: true
 
-
-runs-on: ubuntu-latest
-steps:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
       - name: 'Checkout'
         uses: actions/checkout@main
 
