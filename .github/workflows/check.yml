@@ -21,3 +21,4 @@ jobs:
           tg_version: '0.53.2'  # Use the passed input
           tg_dir: ${{ inputs.working_dir }}
           tg_command: 'hclfmt --terragrunt-check --terragrunt-diff'
+
