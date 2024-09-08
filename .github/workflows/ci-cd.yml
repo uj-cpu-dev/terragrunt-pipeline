@@ -24,6 +24,7 @@ jobs:
           tg_command: 'hclfmt --terragrunt-check --terragrunt-diff'
 
   plan:
+    needs: [ check ]
     runs-on: ubuntu-latest
 
     steps:
