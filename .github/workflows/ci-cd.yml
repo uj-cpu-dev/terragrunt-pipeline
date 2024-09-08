@@ -9,11 +9,7 @@ on:
 
 
 jobs:
-  terragrunt-pipeline:
-    runs-on: ubuntu-latest
-    steps:
-      # Run the check workflow
-      - name: 'Run Terragrunt Check'
-        uses: ./.github/workflows/check.yml
-        with:
-          working_dir: ${{ inputs.working_dir }}
+  terragrunt-project-check:
+    uses: ./.github/workflows/check.yml
+    with:
+      working_dir: ${{ inputs.working_dir }}

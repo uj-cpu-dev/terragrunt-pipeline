@@ -7,8 +7,6 @@ on:
         type: string
         required: true
 
-jobs:
-  check:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout'
